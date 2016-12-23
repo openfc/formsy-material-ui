@@ -3,6 +3,7 @@ import keycode from 'keycode';
 import Formsy from 'formsy-react';
 import TextField from 'material-ui/TextField';
 import { setMuiComponentAndMaybeFocus, debounce } from './utils';
+import ErrorTooltip from './ErrorTooltip';
 
 const FormsyText = React.createClass({
 
@@ -116,17 +117,21 @@ const FormsyText = React.createClass({
     const errorText = this.getErrorMessage() || isRequiredError;
 
     return (
-      <TextField
-        {...rest}
-        errorText={errorText}
-        onBlur={this.handleBlur}
-        onChange={this.handleChange}
-        onKeyDown={this.handleKeyDown}
-        ref={this.setMuiComponentAndMaybeFocus}
-        value={this.getValue()}
-        underlineStyle={this.state.isValid ? { color: this.validationColor() } : {}}
-        underlineFocusStyle={this.state.isValid ? { color: this.validationColor() } : {}}
-      />
+      <div>
+        <TextField
+          {...rest}
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
+          ref={this.setMuiComponentAndMaybeFocus}
+          value={this.getValue()}
+          underlineStyle={this.state.isValid ? { color: this.validationColor() } : {}}
+          underlineFocusStyle={this.state.isValid ? { color: this.validationColor() } : {}}
+        />
+        {
+          errorText ? <ErrorTooltip>{errorText}</ErrorTooltip> : ''
+        }
+      </div>
     );
   },
 });
