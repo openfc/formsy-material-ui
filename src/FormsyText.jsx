@@ -9,12 +9,15 @@ const FormsyText = React.createClass({
 
   propTypes: {
     defaultValue: React.PropTypes.any,
+    inputStyle: React.PropTypes.object,
+    errorStyle: React.PropTypes.object,
     name: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
     required: React.PropTypes.bool,
     requiredError: React.PropTypes.string,
+    style: React.PropTypes.object,
     updateImmediately: React.PropTypes.bool,
     validationColor: React.PropTypes.string,
     validationError: React.PropTypes.string,
@@ -119,7 +122,7 @@ const FormsyText = React.createClass({
     const errorText = this.getErrorMessage() || isRequiredError;
 
     return (
-      <div>
+      <div style={this.props.style}>
         <TextField
           {...rest}
           onBlur={this.handleBlur}
@@ -131,7 +134,13 @@ const FormsyText = React.createClass({
           underlineFocusStyle={this.state.isValid ? { color: this.validationColor() } : {}}
         />
         {
-          errorText ? <ErrorTooltip>{errorText}</ErrorTooltip> : ''
+          errorText ? (
+            <ErrorTooltip
+              style={this.props.errorStyle}
+            >
+              {errorText}
+            </ErrorTooltip>
+          ) : ''
         }
       </div>
     );

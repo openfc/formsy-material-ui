@@ -25,8 +25,13 @@ const styles = {
 };
 
 function ErrorTooltip(props) {
+  const mergedStyles = Object.assign(
+    {},
+    styles.errorTool,
+    props.style,
+  );
   return (
-    <div style={styles.errorTool}>
+    <div style={mergedStyles}>
       <div style={styles.ug} />
       {props.children}
     </div>
@@ -35,6 +40,7 @@ function ErrorTooltip(props) {
 
 ErrorTooltip.propTypes = {
   children: React.PropTypes.node,
+  style: React.PropTypes.object,
 };
 
 export default ErrorTooltip;

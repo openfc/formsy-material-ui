@@ -38,6 +38,7 @@ const FormsyDate = React.createClass({
     const {
       defaultDate, // eslint-disable-line no-unused-vars
       validations, // eslint-disable-line no-unused-vars
+      required, // eslint-disable-line no-unused-vars
       validationErrors, // eslint-disable-line no-unused-vars
       validationError, // eslint-disable-line no-unused-vars
       requiredError,

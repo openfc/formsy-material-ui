@@ -13,6 +13,7 @@ const FormsyAutoComplete = React.createClass({
     onChange: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
+    required: React.PropTypes.bool,
     value: React.PropTypes.any,
   },
 
@@ -51,6 +52,7 @@ const FormsyAutoComplete = React.createClass({
     const {
       defaultValue, // eslint-disable-line no-unused-vars
       onFocus,
+      required, // eslint-disable-line no-unused-vars
       value, // eslint-disable-line no-unused-vars
       ...rest } = this.props;
     return (
