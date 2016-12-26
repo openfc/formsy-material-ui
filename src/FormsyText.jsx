@@ -132,6 +132,7 @@ const FormsyText = React.createClass({
           value={this.getValue()}
           underlineStyle={this.state.isValid ? { color: this.validationColor() } : {}}
           underlineFocusStyle={this.state.isValid ? { color: this.validationColor() } : {}}
+          style={this.props.inputStyle}
         />
         {
           errorText ? (
