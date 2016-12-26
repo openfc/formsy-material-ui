@@ -30,9 +30,14 @@ function ErrorTooltip(props) {
     styles.errorTool,
     props.style,
   );
+  const mergedUgStyles = Object.assign(
+    {},
+    styles.ug,
+    props.ugStyle,
+  );
   return (
     <div style={mergedStyles}>
-      <div style={styles.ug} />
+      <div style={mergedUgStyles} />
       {props.children}
     </div>
   );
@@ -41,6 +46,7 @@ function ErrorTooltip(props) {
 ErrorTooltip.propTypes = {
   children: React.PropTypes.node,
   style: React.PropTypes.object,
+  ugStyle: React.PropTypes.object,
 };
 
 export default ErrorTooltip;
