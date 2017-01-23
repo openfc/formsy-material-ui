@@ -10,6 +10,9 @@ const FormsyText = React.createClass({
   propTypes: {
     defaultValue: React.PropTypes.any,
     inputStyle: React.PropTypes.object,
+    inputClass: React.PropTypes.string,
+    inputErrorStyle: React.PropTypes.object,
+    inputErrorClass: React.PropTypes.string,
     errorStyle: React.PropTypes.object,
     name: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func,
@@ -31,6 +34,7 @@ const FormsyText = React.createClass({
 
   componentWillMount() {
     this.setValue(this.controlledValue());
+    this.setState({ hasError: false }); // responsible for visual error performance of input field
   },
 
   componentWillReceiveProps(nextProps) {
@@ -65,6 +69,20 @@ const FormsyText = React.createClass({
     return props.validationColor || '#4CAF50';
   },
 
+  getInputStyle() {
+      if (this.state.hasError) {
+          return  Object.assign(this.props.inputStyle, this.props.inputErrorStyle);
+      }
+      return this.props.inputStyle;
+  },
+
+  getInputClass() {
+      if (this.state.hasError) {
+          return this.props.inputClass + ' ' + this.props.inputErrorClass;
+      }
+      return this.props.inputClass;
+  },
+
   handleBlur(event) {
     this.setValue(event.currentTarget.value);
     delete this.changeValue;
@@ -94,6 +112,7 @@ const FormsyText = React.createClass({
     }
 
     this.setState({ isValid: this.isValidValue(event.currentTarget.value) });
+    this.setState({ hasError: this.state.isValid });
     if (this.props.onChange) this.props.onChange(event, event.currentTarget.value);
   },
 
@@ -114,6 +133,9 @@ const FormsyText = React.createClass({
       validationError, // eslint-disable-line no-unused-vars
       validationErrors, // eslint-disable-line no-unused-vars
       value, // eslint-disable-line no-unused-vars
+      inputClass,
+      inputErrorStyle,
+      inputErrorClass,
       ...rest,
     } = this.props;
 
@@ -132,7 +154,8 @@ const FormsyText = React.createClass({
           value={this.getValue()}
           underlineStyle={this.state.isValid ? { color: this.validationColor() } : {}}
           underlineFocusStyle={this.state.isValid ? { color: this.validationColor() } : {}}
-          style={this.props.inputStyle}
+          style={this.getInputStyle()}
+          className={this.getInputClass()}
         />
         {
           errorText ? (
