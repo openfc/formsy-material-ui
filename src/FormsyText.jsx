@@ -34,7 +34,6 @@ const FormsyText = React.createClass({
 
   componentWillMount() {
     this.setValue(this.controlledValue());
-    this.setState({ hasError: false }); // responsible for visual error performance of input field
   },
 
   componentWillReceiveProps(nextProps) {
@@ -70,14 +69,14 @@ const FormsyText = React.createClass({
   },
 
   getInputStyle() {
-      if (this.state.hasError) {
+      if (this.getErrorMessage()) {
           return  Object.assign(this.props.inputStyle, this.props.inputErrorStyle);
       }
       return this.props.inputStyle;
   },
 
   getInputClass() {
-      if (this.state.hasError) {
+      if (this.getErrorMessage()) {
           return this.props.inputClass + ' ' + this.props.inputErrorClass;
       }
       return this.props.inputClass;
@@ -112,7 +111,6 @@ const FormsyText = React.createClass({
     }
 
     this.setState({ isValid: this.isValidValue(event.currentTarget.value) });
-    this.setState({ hasError: this.state.isValid });
     if (this.props.onChange) this.props.onChange(event, event.currentTarget.value);
   },
 
