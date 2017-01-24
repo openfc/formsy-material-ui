@@ -68,15 +68,22 @@ const FormsyText = React.createClass({
     return props.validationColor || '#4CAF50';
   },
 
+  hasError() {
+      if (this.isRequired() && !this.isPristine() && !this.isValid() && this.isFormSubmitted()) {
+          return true;
+      }
+      return false;
+  },
+
   getInputStyle() {
-      if (this.getErrorMessage()) {
+      if (this.hasError()) {
           return  Object.assign(this.props.inputStyle, this.props.inputErrorStyle);
       }
       return this.props.inputStyle;
   },
 
   getInputClass() {
-      if (this.getErrorMessage()) {
+      if (this.hasError()) {
           return this.props.inputClass + ' ' + this.props.inputErrorClass;
       }
       return this.props.inputClass;
@@ -137,9 +144,8 @@ const FormsyText = React.createClass({
       ...rest,
     } = this.props;
 
-    const { isRequired, isPristine, isValid, isFormSubmitted } = this;
-    const isRequiredError = isRequired() && !isPristine() && !isValid() && isFormSubmitted() && requiredError;
-    const errorText = this.getErrorMessage() || isRequiredError;
+    const { isRequired, isPristine, isValid, isFormSubmitted } = this; // это навреное тоже убрать нужно, оно вроде не используется
+    const errorText = this.getErrorMessage() || this.hasError() && requiredError;
 
     return (
       <div style={this.props.style}>
