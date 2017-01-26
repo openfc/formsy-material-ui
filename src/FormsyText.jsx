@@ -78,7 +78,7 @@ const FormsyText = React.createClass({
 
   getInputStyle() {
       if (this.hasError()) {
-          return  Object.assign(this.props.inputStyle, this.props.inputErrorStyle);
+          return  Object.assign({}, this.props.inputStyle, this.props.inputErrorStyle);
       }
       return this.props.inputStyle;
   },
