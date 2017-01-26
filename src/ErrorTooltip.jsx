@@ -36,7 +36,7 @@ function ErrorTooltip(props) {
     props.ugStyle,
   );
   return (
-    <div style={mergedStyles}>
+    <div style={mergedStyles} className={props.className}>
       <div style={mergedUgStyles} />
       {props.children}
     </div>

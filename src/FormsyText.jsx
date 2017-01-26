@@ -14,6 +14,7 @@ const FormsyText = React.createClass({
     inputErrorStyle: React.PropTypes.object,
     inputErrorClass: React.PropTypes.string,
     errorStyle: React.PropTypes.object,
+    tooltipClass: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
@@ -141,6 +142,7 @@ const FormsyText = React.createClass({
       inputClass,
       inputErrorStyle,
       inputErrorClass,
+      tooltipClass,
       ...rest,
     } = this.props;
 
@@ -148,7 +150,7 @@ const FormsyText = React.createClass({
     const errorText = this.getErrorMessage() || this.hasError() && requiredError;
 
     return (
-      <div style={this.props.style}>
+      <div style={this.props.style} className={this.props.className}>
         <TextField
           {...rest}
           onBlur={this.handleBlur}
@@ -164,6 +166,7 @@ const FormsyText = React.createClass({
         {
           errorText ? (
             <ErrorTooltip
+              className={this.props.tooltipClass}
               style={this.props.errorStyle}
             >
               {errorText}
