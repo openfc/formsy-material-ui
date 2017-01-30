@@ -78,16 +78,16 @@ const FormsyText = React.createClass({
 
   getInputStyle() {
       if (this.hasError()) {
-          return  Object.assign(this.props.inputStyle, this.props.inputErrorStyle);
+          return  Object.assign({}, this.props.inputStyle, this.props.inputErrorStyle);
       }
-      return this.props.inputStyle;
+      return this.props.inputStyle || {};
   },
 
   getInputClass() {
       if (this.hasError()) {
-          return this.props.inputClass + ' ' + this.props.inputErrorClass;
+          return (this.props.inputClass || '') + ' ' + (this.props.inputErrorClass || '');
       }
-      return this.props.inputClass;
+      return this.props.inputClass || '';
   },
 
   handleBlur(event) {
@@ -151,7 +151,7 @@ const FormsyText = React.createClass({
     const errorTooltipStyles = Object.assign({}, this.props.errorStyle, errorTooltipStyle);
 
     return (
-      <div style={this.props.style}>
+      <div style={this.props.style} className={this.props.className}>
         <TextField
           {...rest}
           onBlur={this.handleBlur}
