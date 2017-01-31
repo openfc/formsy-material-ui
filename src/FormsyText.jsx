@@ -66,7 +66,7 @@ const FormsyText = React.createClass({
   },
 
   validationColor(props = this.props) {
-    return props.validationColor || '#4CAF50';
+    return props.validationColor || '#F7412D';
   },
 
   hasError() {
@@ -159,8 +159,8 @@ const FormsyText = React.createClass({
           onKeyDown={this.handleKeyDown}
           ref={this.setMuiComponentAndMaybeFocus}
           value={this.getValue()}
-          underlineStyle={this.state.isValid ? { color: this.validationColor() } : {}}
-          underlineFocusStyle={this.state.isValid ? { color: this.validationColor() } : {}}
+          underlineStyle={this.hasError() ? { borderColor: this.validationColor() } : {}}
+          underlineFocusStyle={this.hasError() ? { borderColor: this.validationColor() } : {}}
           style={this.getInputStyle()}
           className={this.getInputClass()}
         />
