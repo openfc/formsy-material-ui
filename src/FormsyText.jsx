@@ -14,7 +14,9 @@ const FormsyText = React.createClass({
     inputErrorStyle: React.PropTypes.object,
     inputErrorClass: React.PropTypes.string,
     errorStyle: React.PropTypes.object,
+    errorUgStyle: React.PropTypes.object,
     errorTooltipStyle: React.PropTypes.object,
+    errorTooltipUgStyle: React.PropTypes.object,
     name: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
@@ -134,6 +136,7 @@ const FormsyText = React.createClass({
       defaultValue, // eslint-disable-line no-unused-vars
       requiredError,
       errorTooltipStyle,
+      errorTooltipUgStyle,
       required, // eslint-disable-line no-unused-vars
       updateImmediately, // eslint-disable-line no-unused-vars
       validations, // eslint-disable-line no-unused-vars
@@ -149,6 +152,7 @@ const FormsyText = React.createClass({
     const { isRequired, isPristine, isValid, isFormSubmitted } = this; // это навреное тоже убрать нужно, оно вроде не используется
     const errorText = this.getErrorMessage() || this.hasError() && requiredError;
     const errorTooltipStyles = Object.assign({}, this.props.errorStyle, errorTooltipStyle);
+    const errorTooltipUgStyle = Object.assign({}, this.props.errorUgStyle, errorTooltipUgStyle);
 
     return (
       <div style={this.props.style} className={this.props.className}>
@@ -168,6 +172,7 @@ const FormsyText = React.createClass({
           errorText ? (
             <ErrorTooltip
               style={errorTooltipStyles}
+              ugStyle={errorTooltipUgStyle}
             >
               {errorText}
             </ErrorTooltip>
