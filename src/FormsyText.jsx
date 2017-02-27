@@ -24,6 +24,7 @@ const FormsyText = React.createClass({
     required: React.PropTypes.bool,
     requiredError: React.PropTypes.string,
     style: React.PropTypes.object,
+    underlineStyle: React.PropTypes.object,
     updateImmediately: React.PropTypes.bool,
     validationColor: React.PropTypes.string,
     validationError: React.PropTypes.string,
@@ -34,6 +35,9 @@ const FormsyText = React.createClass({
 
   mixins: [Formsy.Mixin],
 
+  defaultProps: {
+    underlineStyle: {},
+  },
 
   componentWillMount() {
     this.setValue(this.controlledValue());
@@ -137,6 +141,7 @@ const FormsyText = React.createClass({
       requiredError,
       errorTooltipStyle,
       errorTooltipUgStyle,
+      underlineStyle,
       required, // eslint-disable-line no-unused-vars
       updateImmediately, // eslint-disable-line no-unused-vars
       validations, // eslint-disable-line no-unused-vars
@@ -163,7 +168,7 @@ const FormsyText = React.createClass({
           onKeyDown={this.handleKeyDown}
           ref={this.setMuiComponentAndMaybeFocus}
           value={this.getValue()}
-          underlineStyle={this.state.isValid ? { color: this.validationColor() } : {}}
+          underlineStyle={this.state.isValid ? { color: this.validationColor() } : underlineStyle}
           underlineFocusStyle={this.state.isValid ? { color: this.validationColor() } : {}}
           style={this.getInputStyle()}
           className={this.getInputClass()}
