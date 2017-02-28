@@ -14,7 +14,9 @@ const FormsyText = React.createClass({
     inputErrorStyle: React.PropTypes.object,
     inputErrorClass: React.PropTypes.string,
     errorStyle: React.PropTypes.object,
+    errorUgStyle: React.PropTypes.object,
     errorTooltipStyle: React.PropTypes.object,
+    errorTooltipUgStyle: React.PropTypes.object,
     name: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
@@ -22,6 +24,8 @@ const FormsyText = React.createClass({
     required: React.PropTypes.bool,
     requiredError: React.PropTypes.string,
     style: React.PropTypes.object,
+    underlineStyle: React.PropTypes.object,
+    underlineFocusStyle: React.PropTypes.object,
     updateImmediately: React.PropTypes.bool,
     validationColor: React.PropTypes.string,
     validationError: React.PropTypes.string,
@@ -31,7 +35,6 @@ const FormsyText = React.createClass({
   },
 
   mixins: [Formsy.Mixin],
-
 
   componentWillMount() {
     this.setValue(this.controlledValue());
@@ -66,7 +69,7 @@ const FormsyText = React.createClass({
   },
 
   validationColor(props = this.props) {
-    return props.validationColor || '#F7412D';
+    return props.validationColor || '#da0000';
   },
 
   hasError() {
@@ -134,6 +137,9 @@ const FormsyText = React.createClass({
       defaultValue, // eslint-disable-line no-unused-vars
       requiredError,
       errorTooltipStyle,
+      errorTooltipUgStyle,
+      underlineStyle,
+      underlineFocusStyle,
       required, // eslint-disable-line no-unused-vars
       updateImmediately, // eslint-disable-line no-unused-vars
       validations, // eslint-disable-line no-unused-vars
@@ -149,6 +155,7 @@ const FormsyText = React.createClass({
     const { isRequired, isPristine, isValid, isFormSubmitted } = this; // это навреное тоже убрать нужно, оно вроде не используется
     const errorText = this.getErrorMessage() || this.hasError() && requiredError;
     const errorTooltipStyles = Object.assign({}, this.props.errorStyle, errorTooltipStyle);
+    const errorTooltipUgStyles = Object.assign({}, this.props.errorUgStyle, errorTooltipUgStyle);
 
     return (
       <div style={this.props.style} className={this.props.className}>
@@ -159,8 +166,8 @@ const FormsyText = React.createClass({
           onKeyDown={this.handleKeyDown}
           ref={this.setMuiComponentAndMaybeFocus}
           value={this.getValue()}
-          underlineStyle={this.hasError() ? { borderColor: this.validationColor() } : {}}
-          underlineFocusStyle={this.hasError() ? { borderColor: this.validationColor() } : {}}
+          underlineStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineStyle}
+          underlineFocusStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineFocusStyle}
           style={this.getInputStyle()}
           className={this.getInputClass()}
         />
@@ -168,6 +175,7 @@ const FormsyText = React.createClass({
           errorText ? (
             <ErrorTooltip
               style={errorTooltipStyles}
+              ugStyle={errorTooltipUgStyles}
             >
               {errorText}
             </ErrorTooltip>
