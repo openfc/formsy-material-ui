@@ -74,7 +74,7 @@ const FormsyText = React.createClass({
   },
 
   validationColor(props = this.props) {
-    return props.validationColor || '#4CAF50';
+    return props.validationColor || '#DA0000';
   },
 
   hasError() {
