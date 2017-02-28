@@ -36,11 +36,6 @@ const FormsyText = React.createClass({
 
   mixins: [Formsy.Mixin],
 
-  defaultProps: {
-    underlineStyle: {},
-    underlineFocusStyle: {},
-  },
-
   componentWillMount() {
     this.setValue(this.controlledValue());
   },
