@@ -160,7 +160,7 @@ const FormsyText = React.createClass({
     const { isRequired, isPristine, isValid, isFormSubmitted } = this; // это навреное тоже убрать нужно, оно вроде не используется
     const errorText = this.getErrorMessage() || this.hasError() && requiredError;
     const errorTooltipStyles = Object.assign({}, this.props.errorStyle, errorTooltipStyle);
-    const errorTooltipUgStyle = Object.assign({}, this.props.errorUgStyle, errorTooltipUgStyle);
+    const errorTooltipUgStyles = Object.assign({}, this.props.errorUgStyle, errorTooltipUgStyle);
 
     return (
       <div style={this.props.style} className={this.props.className}>
@@ -180,7 +180,7 @@ const FormsyText = React.createClass({
           errorText ? (
             <ErrorTooltip
               style={errorTooltipStyles}
-              ugStyle={errorTooltipUgStyle}
+              ugStyle={errorTooltipUgStyles}
             >
               {errorText}
             </ErrorTooltip>
