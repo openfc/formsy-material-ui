@@ -15,7 +15,6 @@ const FormsyText = React.createClass({
     inputErrorClass: React.PropTypes.string,
     errorStyle: React.PropTypes.object,
     errorTooltipStyle: React.PropTypes.object,
-    errorTooltipUgStyle: React.PropTypes.object,
     name: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
@@ -172,7 +171,7 @@ const FormsyText = React.createClass({
           errorText ? (
             <ErrorTooltip
               style={errorTooltipStyles}
-              ugStyle={{ borderColor: this.validationColor() }}
+              ugStyle={{ borderRightColor: this.validationColor() }}
             >
               {errorText}
             </ErrorTooltip>
