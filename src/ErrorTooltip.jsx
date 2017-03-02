@@ -2,7 +2,7 @@ import React from 'react';
 
 const styles = {
   errorTool: {
-    background: '#DA0000',
+    background: '#F44336',
     borderRadius: '5px',
     color: 'white',
     margin: '0 auto',
@@ -14,7 +14,7 @@ const styles = {
   },
   ug: {
     border: '10px solid transparent',
-    borderRight: '10px solid #DA0000',
+    borderRight: '10px solid #F44336',
     content: '',
     display: 'block',
     left: '-19px',
