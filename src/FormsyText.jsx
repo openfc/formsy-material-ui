@@ -22,6 +22,8 @@ const FormsyText = React.createClass({
     required: React.PropTypes.bool,
     requiredError: React.PropTypes.string,
     style: React.PropTypes.object,
+    underlineStyle: React.PropTypes.object,
+    underlineFocusStyle: React.PropTypes.object,
     updateImmediately: React.PropTypes.bool,
     validationColor: React.PropTypes.string,
     validationError: React.PropTypes.string,
@@ -31,7 +33,6 @@ const FormsyText = React.createClass({
   },
 
   mixins: [Formsy.Mixin],
-
 
   componentWillMount() {
     this.setValue(this.controlledValue());
@@ -66,7 +67,7 @@ const FormsyText = React.createClass({
   },
 
   validationColor(props = this.props) {
-    return props.validationColor || '#4CAF50';
+    return props.validationColor || '#DA0000';
   },
 
   hasError() {
@@ -134,6 +135,8 @@ const FormsyText = React.createClass({
       defaultValue, // eslint-disable-line no-unused-vars
       requiredError,
       errorTooltipStyle,
+      underlineStyle,
+      underlineFocusStyle,
       required, // eslint-disable-line no-unused-vars
       updateImmediately, // eslint-disable-line no-unused-vars
       validations, // eslint-disable-line no-unused-vars
@@ -159,8 +162,8 @@ const FormsyText = React.createClass({
           onKeyDown={this.handleKeyDown}
           ref={this.setMuiComponentAndMaybeFocus}
           value={this.getValue()}
-          underlineStyle={this.state.isValid ? { color: this.validationColor() } : {}}
-          underlineFocusStyle={this.state.isValid ? { color: this.validationColor() } : {}}
+          underlineStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineStyle}
+          underlineFocusStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineFocusStyle}
           style={this.getInputStyle()}
           className={this.getInputClass()}
         />
@@ -168,6 +171,7 @@ const FormsyText = React.createClass({
           errorText ? (
             <ErrorTooltip
               style={errorTooltipStyles}
+              ugStyle={{ borderRightColor: errorTooltipStyles.background }}
             >
               {errorText}
             </ErrorTooltip>
@@ -179,3 +183,4 @@ const FormsyText = React.createClass({
 });
 
 export default FormsyText;
+
