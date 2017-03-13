@@ -171,7 +171,7 @@ const FormsyText = React.createClass({
           errorText ? (
             <ErrorTooltip
               style={errorTooltipStyles}
-              ugStyle={{ borderRightColor: errorTooltipStyles.background }}
+              ugStyle={{ borderRightColor: errorTooltipStyles.background || {}}}
             >
               {errorText}
             </ErrorTooltip>
