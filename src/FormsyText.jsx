@@ -164,7 +164,6 @@ const FormsyText = React.createClass({
           value={this.getValue()}
           underlineStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineStyle || { borderBottomColor: '#E0E0E0' }}
           underlineFocusStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineFocusStyle || { borderBottomColor: '#00AFD2' }}
-          
           style={this.getInputStyle()}
           className={this.getInputClass()}
         />
