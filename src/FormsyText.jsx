@@ -162,8 +162,8 @@ const FormsyText = React.createClass({
           onKeyDown={this.handleKeyDown}
           ref={this.setMuiComponentAndMaybeFocus}
           value={this.getValue()}
-          underlineStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineStyle}
-          underlineFocusStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineFocusStyle}
+          underlineStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineStyle || { borderBottomColor: '#E0E0E0' }}
+          underlineFocusStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineFocusStyle || { borderBottomColor: '#00AFD2' }}
           style={this.getInputStyle()}
           className={this.getInputClass()}
         />
