@@ -2,7 +2,7 @@ import React from 'react';
 import keycode from 'keycode';
 import Formsy from 'formsy-react';
 import AutoComplete from 'material-ui/AutoComplete';
-import { setMuiComponentAndMaybeFocus } from 'formsy-react/src/utils';
+import { setMuiComponentAndMaybeFocus } from './utils';
 import ErrorTooltip from './ErrorTooltip';
 
 const FormsyAutoComplete = React.createClass({
