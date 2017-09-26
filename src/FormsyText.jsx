@@ -24,6 +24,8 @@ const FormsyText = React.createClass({
     style: React.PropTypes.object,
     underlineStyle: React.PropTypes.object,
     underlineFocusStyle: React.PropTypes.object,
+    underlineErrorFocusStyle: React.PropTypes.object,
+    underlineErrorStyle: React.PropTypes.object,
     updateImmediately: React.PropTypes.bool,
     validationColor: React.PropTypes.string,
     validationError: React.PropTypes.string,
@@ -137,6 +139,8 @@ const FormsyText = React.createClass({
       errorTooltipStyle,
       underlineStyle,
       underlineFocusStyle,
+      underlineErrorStyle,
+      underlineErrorFocusStyle,
       required, // eslint-disable-line no-unused-vars
       updateImmediately, // eslint-disable-line no-unused-vars
       validations, // eslint-disable-line no-unused-vars
@@ -152,6 +156,12 @@ const FormsyText = React.createClass({
     const { isRequired, isPristine, isValid, isFormSubmitted } = this; // это навреное тоже убрать нужно, оно вроде не используется
     const errorText = this.getErrorMessage() || this.hasError() && requiredError;
     const errorTooltipStyles = Object.assign({}, this.props.errorStyle, errorTooltipStyle);
+    const underlineStyle = this.hasError() ?
+          Object.assign({}, { borderColor: this.validationColor() }, underlineErrorStyle) :
+          Object.assign({}, { borderColor: '#E0E0E0' }, underlineStyle);
+    const underlineFocusStyle = this.hasError() ?
+          Object.assign({}, { borderColor: this.validationColor() }, underlineErrorFocusStyle) :
+          Object.assign({}, { borderColor: '#00AFD2' }, underlineFocusStyle);
 
     return (
       <div style={this.props.style} className={this.props.className}>
@@ -162,8 +172,8 @@ const FormsyText = React.createClass({
           onKeyDown={this.handleKeyDown}
           ref={this.setMuiComponentAndMaybeFocus}
           value={this.getValue()}
-          underlineStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineStyle || { borderBottomColor: '#E0E0E0' }}
-          underlineFocusStyle={this.hasError() ? { borderColor: this.validationColor() } : underlineFocusStyle || { borderBottomColor: '#00AFD2' }}
+          underlineStyle={underlineStyle}
+          underlineFocusStyle={underlineFocusStyle}
           style={this.getInputStyle()}
           className={this.getInputClass()}
         />
