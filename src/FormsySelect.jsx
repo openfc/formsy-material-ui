@@ -21,6 +21,8 @@ const FormsySelect = React.createClass({
     style: React.PropTypes.object,
     underlineFocusStyle: React.PropTypes.object,
     underlineStyle: React.PropTypes.object,
+    underlineErrorFocusStyle: React.PropTypes.object,
+    underlineErrorStyle: React.PropTypes.object,
     validationError: React.PropTypes.string,
     validationErrors: React.PropTypes.object,
     validations: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.object]),
@@ -68,6 +70,8 @@ const FormsySelect = React.createClass({
       required, // eslint-disable-line no-unused-vars
       underlineStyle,
       underlineFocusStyle,
+      underlineErrorStyle,
+      underlineErrorFocusStyle,
       errorTooltipStyle,
       requiredError,
       className,
@@ -78,6 +82,12 @@ const FormsySelect = React.createClass({
     value = this.state.hasChanged ? this.getValue() : value;
     const errorText = this.getErrorMessage() || this.hasError() && requiredError;
     const errorTooltipStyles = Object.assign({}, this.props.errorStyle, errorTooltipStyle);
+    const underlineStyle = this.hasError() ?
+          Object.assign({}, { borderColor: this.validationColor() }, underlineErrorStyle) :
+          Object.assign({}, { borderColor: '#E0E0E0' }, underlineStyle);
+    const underlineFocusStyle = this.hasError() ?
+          Object.assign({}, { borderColor: this.validationColor() }, underlineErrorFocusStyle) :
+          Object.assign({}, { borderColor: '#00AFD2' }, underlineFocusStyle);
 
     return (
       <div style={style} className={className}>
@@ -87,12 +97,8 @@ const FormsySelect = React.createClass({
           ref={this.setMuiComponentAndMaybeFocus}
           value={value}
           style={style}
-          underlineStyle={this.hasError() ?
-            { borderColor: this.validationColor() } :
-            underlineStyle || { borderBottomColor: '#E0E0E0' }}
-          underlineFocusStyle={this.hasError() ?
-            { borderColor: this.validationColor() } :
-            underlineFocusStyle || { borderBottomColor: '#00AFD2' }}
+          underlineStyle={underlineStyle}
+          underlineFocusStyle={underlineFocusStyle}
         >
           {this.props.children}
         </SelectField>
