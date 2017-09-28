@@ -156,10 +156,10 @@ const FormsyText = React.createClass({
     const { isRequired, isPristine, isValid, isFormSubmitted } = this; // это навреное тоже убрать нужно, оно вроде не используется
     const errorText = this.getErrorMessage() || this.hasError() && requiredError;
     const errorTooltipStyles = Object.assign({}, this.props.errorStyle, errorTooltipStyle);
-    const underlineStyle = this.hasError() ?
+    const customUnderlineStyle = this.hasError() ?
           Object.assign({}, { borderColor: this.validationColor() }, underlineErrorStyle) :
           Object.assign({}, { borderColor: '#E0E0E0' }, underlineStyle);
-    const underlineFocusStyle = this.hasError() ?
+    const customUnderlineFocusStyle = this.hasError() ?
           Object.assign({}, { borderColor: this.validationColor() }, underlineErrorFocusStyle) :
           Object.assign({}, { borderColor: '#00AFD2' }, underlineFocusStyle);
 
@@ -172,8 +172,8 @@ const FormsyText = React.createClass({
           onKeyDown={this.handleKeyDown}
           ref={this.setMuiComponentAndMaybeFocus}
           value={this.getValue()}
-          underlineStyle={underlineStyle}
-          underlineFocusStyle={underlineFocusStyle}
+          underlineStyle={customUnderlineStyle}
+          underlineFocusStyle={customUnderlineFocusStyle}
           style={this.getInputStyle()}
           className={this.getInputClass()}
         />
