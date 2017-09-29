@@ -159,9 +159,8 @@ const FormsyText = React.createClass({
     const customUnderlineStyle = this.hasError() ?
           Object.assign({}, { borderColor: this.validationColor() }, underlineErrorStyle) :
           Object.assign({}, { borderColor: '#E0E0E0' }, underlineStyle);
-    const customUnderlineFocusStyle = this.hasError() ?
-          Object.assign({}, { borderColor: '#00AFD2' }, underlineErrorFocusStyle) :
-          Object.assign({}, { borderColor: '#00AFD2' }, underlineFocusStyle);
+    const customUnderlineFocusStyle =
+          Object.assign({}, { borderColor: '#00AFD2' }, this.hasError() ? underlineErrorFocusStyle : underlineFocusStyle);
 
     return (
       <div style={this.props.style} className={this.props.className}>
