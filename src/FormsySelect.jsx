@@ -82,12 +82,11 @@ const FormsySelect = React.createClass({
     value = this.state.hasChanged ? this.getValue() : value;
     const errorText = this.getErrorMessage() || this.hasError() && requiredError;
     const errorTooltipStyles = Object.assign({}, this.props.errorStyle, errorTooltipStyle);
-    const underlineStyle = this.hasError() ?
+    const customUnderlineStyle = this.hasError() ?
           Object.assign({}, { borderColor: this.validationColor() }, underlineErrorStyle) :
           Object.assign({}, { borderColor: '#E0E0E0' }, underlineStyle);
-    const underlineFocusStyle = this.hasError() ?
-          Object.assign({}, { borderColor: this.validationColor() }, underlineErrorFocusStyle) :
-          Object.assign({}, { borderColor: '#00AFD2' }, underlineFocusStyle);
+    const customUnderlineFocusStyle =
+          Object.assign({}, { borderColor: '#00AFD2' }, this.hasError() ? underlineErrorFocusStyle : underlineFocusStyle);
 
     return (
       <div style={style} className={className}>
@@ -97,8 +96,8 @@ const FormsySelect = React.createClass({
           ref={this.setMuiComponentAndMaybeFocus}
           value={value}
           style={style}
-          underlineStyle={underlineStyle}
-          underlineFocusStyle={underlineFocusStyle}
+          underlineStyle={customUnderlineStyle}
+          underlineFocusStyle={customUnderlineFocusStyle}
         >
           {this.props.children}
         </SelectField>
